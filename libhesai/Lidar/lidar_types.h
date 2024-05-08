@@ -133,6 +133,8 @@ struct LidarDecodedPacket
     uint16_t spin_speed;
     uint8_t lidar_state;
     uint8_t work_mode;
+    uint8_t column_resolution;
+    uint8_t row_resolution;
     bool IsDecodedPacketValid() {
       return block_num != 0;
     }
