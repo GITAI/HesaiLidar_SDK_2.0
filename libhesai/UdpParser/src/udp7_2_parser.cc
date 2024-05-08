@@ -265,7 +265,7 @@ int Udp7_2Parser<T_Point>::DecodePacket(LidarDecodedPacket<T_Point> &output, con
   output.points_num = pHeader->GetChannelNum();
   output.scan_complete = false;
   output.distance_unit = pHeader->GetDistUnit();
-  output.column_resolution = pHeader->GetColumnResolution();
+  // output.column_resolution = pHeader->GetColumnResolution();
   output.row_resolution = pHeader->GetRowResolution();
   int index = 0;
   float minAzimuth = 0;
@@ -290,6 +290,7 @@ int Udp7_2Parser<T_Point>::DecodePacket(LidarDecodedPacket<T_Point> &output, con
     output.scan_complete = true;
   }
   this->last_cloumn_id_ = pTail->column_id;
+  output.column_resolution = pTail->column_id + 1;
   return 0;
 }  
 
