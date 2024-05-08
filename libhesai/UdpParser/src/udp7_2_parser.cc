@@ -230,6 +230,8 @@ int Udp7_2Parser<T_Point>::ComputeXYZI(LidarDecodedFrame<T_Point> &frame, LidarD
   }
   frame.points_num += packet.points_num;
   frame.packet_num = packet.packet_index;
+  frame.column_resolution = packet.column_resolution;
+  frame.row_resolution = packet.row_resolution;
   return 0;
 }
 
@@ -263,6 +265,8 @@ int Udp7_2Parser<T_Point>::DecodePacket(LidarDecodedPacket<T_Point> &output, con
   output.points_num = pHeader->GetChannelNum();
   output.scan_complete = false;
   output.distance_unit = pHeader->GetDistUnit();
+  output.row_resolution = pHeader->total_row;
+  output.column_resolution = pHeader->total_column;
   int index = 0;
   float minAzimuth = 0;
   float maxAzimuth = 0;
