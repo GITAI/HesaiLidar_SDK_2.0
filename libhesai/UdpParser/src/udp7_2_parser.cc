@@ -230,6 +230,8 @@ int Udp7_2Parser<T_Point>::ComputeXYZI(LidarDecodedFrame<T_Point> &frame, LidarD
   }
   frame.points_num += packet.points_num;
   frame.packet_num = packet.packet_index;
+  frame.column_resolution = packet.column_resolution;
+  frame.row_resolution = packet.row_resolution;
   return 0;
 }
 
